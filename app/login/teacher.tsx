@@ -1,17 +1,17 @@
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
-import { useAuth } from "./context/AuthContext";
+import { useTeacherAuth } from "../context/TeacherAuthContext";
 import { useState } from "react";
 import { useRouter } from "expo-router";
 
 export default function Login() {
-  const { onLogin } = useAuth();
+  const { onLogin } = useTeacherAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
   const login = async () => {
-    const result = await onLogin!(email, password);
 
+    const result = await onLogin!(email, password)
     if (result && result.error) {
       switch (result.error.status) {
         case 400:
@@ -25,13 +25,13 @@ export default function Login() {
           break;
       }
     } else {
-      router.push("/(tabs)");
+      router.push("/(teacher)");
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Panel Rodzica</Text>
+      <Text style={styles.header}>Panel Nauczyciela</Text>
       <Text style={styles.label}>Email</Text>
       <TextInput placeholder="Email" value={email} onChangeText={setEmail} />
       <Text style={styles.label}>Hasło</Text>

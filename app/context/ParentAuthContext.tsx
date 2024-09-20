@@ -14,7 +14,7 @@ const REFRESH_TOKEN_KEY = "refresh_token";
 export const API_URL = "http://192.168.1.86:8000";
 const AuthContext = createContext<AuthProps>({});
 
-export const useAuth = () => {
+export const useParentAuth = () => {
   return useContext(AuthContext);
 };
 
@@ -35,12 +35,12 @@ export default function AuthProvider({ children }: any) {
     //   }
     // };
     // loadToken();
-    try {
-      SecureStore.deleteItemAsync(TOKEN_KEY);
-      SecureStore.deleteItemAsync(REFRESH_TOKEN_KEY);
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   SecureStore.deleteItemAsync(TOKEN_KEY);
+    //   SecureStore.deleteItemAsync(REFRESH_TOKEN_KEY);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }, []);
 
   const register = async (email: string, password: string) => {
