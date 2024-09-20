@@ -4,11 +4,11 @@ import React from "react";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { useAuth } from "../context/AuthContext";
+import { useParentAuth } from "../context/ParentAuthContext";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-  const { authState } = useAuth();
+  const { authState } = useParentAuth();
   if (!authState?.authenticated) {
     return <Redirect href="/login" />;
   }
