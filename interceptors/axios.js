@@ -1,5 +1,5 @@
 // import axios from "axios";
-// import { API_URL } from "../app/context/AuthContext";
+
 // import * as SecureStore from "expo-secure-store";
 
 // let refresh = false;
@@ -11,7 +11,7 @@
 //       refresh = true;
 //       const refresh_token = await SecureStore.getItemAsync("refresh_token");
 //       const response = await axios.post(
-//         API_URL + "/parent/token/refresh",
+//         process.env.EXPO_PUBLIC_API_URL + "/parent/token/refresh",
 //         {
 //           refresh: refresh_token,
 //         },

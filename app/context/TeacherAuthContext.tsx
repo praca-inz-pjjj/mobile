@@ -11,7 +11,7 @@ interface AuthProps {
 
 const TOKEN_KEY = "teacher_token";
 const REFRESH_TOKEN_KEY = "teacher_refresh_token";
-export const API_URL = "http://192.168.1.86:8000";
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
 const TeacherAuthContext = createContext<AuthProps>({});
 
 export const useTeacherAuth = () => {
