@@ -32,7 +32,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="pickup"
+        name="pickup/[id]"
         options={{
           title: "Pick up",
           tabBarIcon: ({ color, focused }) => (

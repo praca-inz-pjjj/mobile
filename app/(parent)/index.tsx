@@ -1,33 +1,54 @@
-import { Image, StyleSheet} from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'expo-router';
 
+interface Permission {
+  id: number;
+  parent: string;
+  state: string;
+  start_date: string;
+  end_date: string;
+}
 
 export default function HomeScreen() {
+  const [permissions, setPermissions] = useState<Permission[]>([]);
+  useEffect(() => {
+    async function doRequest() {
+      try {
+        const response = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/parent/permissions`);
+        setPermissions(response.data.permissions)
+        return response.data;
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    doRequest()
+
+  }, [])
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
+    <ScrollView>
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
-        
+        {permissions.map((perm) => (
+          <Link style={styles.link} href={{ pathname: '/(parent)/pickup/[id]', params: { id: perm.id }, }} key={perm.id}>
+            {`${perm.parent}\n${perm.state}\n${perm.start_date}\n${perm.end_date}`}
+          </Link>
+        ))}
       </ThemedView>
 
-    </ParallaxScrollView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     gap: 8,
   },
@@ -41,5 +62,16 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: 'absolute',
+  },
+  link: {
+    fontSize: 24,
+    padding: 20,
+    margin: 20,
+    width: 300,
+    backgroundColor: "#007BFF",
+    borderRadius: 10,
+    textAlign: "center",
+    color: "#FFFFFF",
+    textDecorationLine: "none",
   },
 });
