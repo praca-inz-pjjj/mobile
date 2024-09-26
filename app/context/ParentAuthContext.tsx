@@ -11,7 +11,7 @@ interface AuthProps {
 
 const TOKEN_KEY = "token";
 const REFRESH_TOKEN_KEY = "refresh_token";
-export const API_URL = "http://192.168.1.86:8000";
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
 const AuthContext = createContext<AuthProps>({});
 
 export const useParentAuth = () => {
