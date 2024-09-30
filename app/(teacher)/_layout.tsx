@@ -31,10 +31,11 @@ export default function TabLayout() {
           ),
         }}
       />
-      {/* <Tabs.Screen
-        name="example"
+      <Tabs.Screen
+        name="scan/scan"
         options={{
-          title: "Example second screen",
+          unmountOnBlur: true,
+          title: "scan",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "code-slash" : "code-slash-outline"}
@@ -42,7 +43,14 @@ export default function TabLayout() {
             />
           ),
         }}
-      /> */}
+      />
+      <Tabs.Screen
+        name="scan/scanned"
+        options={{
+          unmountOnBlur: true,
+          tabBarButton: () => null
+        }}
+      />
     </Tabs>
   );
 }
