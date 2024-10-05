@@ -1,6 +1,6 @@
 import { ThemedText } from "@/components/ThemedText";
 import axios from "axios";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { View, Button, StyleSheet, Text } from "react-native";
 
@@ -35,6 +35,7 @@ export default function Scanned(){
     const [reciver, setReciver] = useState<Person>();
     const [child, setChild] = useState<Child>();
     const [permission, setPermission] = useState<Permission>();
+
     useEffect(() => {
         async function doRequest() {
           try {
@@ -51,6 +52,27 @@ export default function Scanned(){
         doRequest()
     
       }, [id]);
+
+    const handleAccept = async () => {
+      try{
+        const response = await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/teacher/receipt`, { permission_id: permission?.id, reciver_id: reciver?.id, acceptance: true })
+        alert(`Udało się zapisać zmiany`)
+        router.back()
+      }catch (error) {
+        alert(`Ups coś poszło nie tak: ${error}`);
+      }
+    }
+
+    const handleReject = async () => {
+      try{
+        const response = await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/teacher/receipt`, { permission_id: permission?.id, reciver_id: reciver?.id, acceptance: false })
+        alert(`Udało się zapisać zmiany`)
+        router.back()
+      }catch (error) {
+        alert(`Ups coś poszło nie tak: ${error}`);
+      }
+    }
+
     return (
       <View style={styles.container}>
       {data && 
@@ -69,8 +91,8 @@ export default function Scanned(){
               <Text style={styles.personText}>Imię: {child?.name}</Text>
               <Text style={styles.personText}>Nazwisko: {child?.surname}</Text>
             </View><View style={styles.buttonContainer}>
-              <Button title="Zatwierdź Odbiór" color="#28A745" />
-              <Button title="Odrzuć Odbiór" color="#DC3545" />
+              <Button title="Zatwierdź Odbiór" color="#28A745" onPress={handleAccept}/>
+              <Button title="Odrzuć Odbiór" color="#DC3545" onPress={handleReject}/>
             </View></>
     }
     {
