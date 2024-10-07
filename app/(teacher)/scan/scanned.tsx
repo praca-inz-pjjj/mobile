@@ -30,7 +30,7 @@ interface Child{
 
 export default function Scanned(){
     const { id } = useLocalSearchParams();
-    const [data, setData] = useState('');
+    const [data, setData] = useState(null);
     const [parent, setParent] = useState<Person>();
     const [reciver, setReciver] = useState<Person>();
     const [child, setChild] = useState<Child>();
@@ -40,7 +40,7 @@ export default function Scanned(){
         async function doRequest() {
           try {
             const response = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/teacher/receipt`, { params: { id: id }});
-            setData(response.data.id)
+            setData(response.data)
             setParent(response.data.parent)
             setReciver(response.data.reciver)
             setChild(response.data.child)
