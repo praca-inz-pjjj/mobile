@@ -28,7 +28,7 @@ export default function TabTwoScreen() {
   return (
     <ThemedView style={styles.container}>
           {qrCode && 
-    <><ThemedText style={styles.headerText}>{`Widok odbioru`}</ThemedText><ThemedText style={styles.qrCodeText}>{qrCode}</ThemedText><QRCode value={String(qrCode)} size={300} color="black" backgroundColor="#F8F9FA" /></>
+    <><ThemedText style={styles.headerText}>{`Odbierz dziecko`}</ThemedText><ThemedText style={styles.qrCodeText}>{qrCode}</ThemedText><QRCode value={String(qrCode)} size={300} color="black" backgroundColor="#F8F9FA" /></>
     }
     {!qrCode && <ThemedText style={styles.headerText}>{"Nie ma takiej permisji"}</ThemedText>}
     </ThemedView>
