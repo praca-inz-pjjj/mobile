@@ -35,12 +35,8 @@ export default function TabLayout() {
         name="pickup/[id]"
         options={{
           title: "Pick up",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
-            />
-          ),
+          unmountOnBlur: true,
+          tabBarButton: () => null
         }}
       />
     </Tabs>
