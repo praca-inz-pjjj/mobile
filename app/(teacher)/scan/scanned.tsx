@@ -22,8 +22,8 @@ interface Permission {
 
 interface Child{
   id: number;
-  name: string;
-  surname: string;
+  first_name: string;
+  last_name: string;
   birth_date: string;
   classroom_id: number;
 }
@@ -88,8 +88,8 @@ export default function Scanned(){
               <Text style={styles.personText}>Nazwisko: {reciver?.last_name}</Text>
             </View><View style={styles.personContainer}>
               <Text style={styles.personRoleText}>Dziecko do odbioru</Text>
-              <Text style={styles.personText}>Imię: {child?.name}</Text>
-              <Text style={styles.personText}>Nazwisko: {child?.surname}</Text>
+              <Text style={styles.personText}>Imię: {child?.first_name}</Text>
+              <Text style={styles.personText}>Nazwisko: {child?.last_name}</Text>
             </View><View style={styles.buttonContainer}>
               <Button title="Zatwierdź Odbiór" color="#28A745" onPress={handleAccept}/>
               <Button title="Odrzuć Odbiór" color="#DC3545" onPress={handleReject}/>
