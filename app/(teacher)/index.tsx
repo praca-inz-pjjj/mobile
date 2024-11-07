@@ -1,12 +1,14 @@
-import { View, Text } from "react-native";
+import { Link } from "expo-router";
+import { View, Text, Pressable } from "react-native";
 import { StyleSheet } from "react-native";
 
 // index view
 export default function Index() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-      <Text style={styles.text}>Welcome to the home page</Text>
+      <Link style={styles.link} href="/(teacher)/scan/scan">
+        Skanuj kod odbioru
+      </Link>
     </View>
   );
 }
@@ -23,5 +25,16 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
+  },
+  link: {
+    fontSize: 24,
+    padding: 20,
+    margin: 20,
+    width: 300,
+    backgroundColor: "#007BFF",
+    borderRadius: 10,
+    textAlign: "center",
+    color: "#FFFFFF",
+    textDecorationLine: "none",
   },
 });

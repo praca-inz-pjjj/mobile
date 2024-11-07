@@ -1,14 +1,26 @@
-import { Link } from "expo-router";
+import { Link, useNavigation } from "expo-router";
+import { useEffect } from "react";
 import { View } from "react-native";
 import { StyleSheet } from "react-native";
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({ title: "Wybierz panel" });
+  }, [navigation]);
   return (
     <View style={styles.constainer}>
-      <Link style={styles.link} href="/login/parent">
+      <Link
+        style={{ ...styles.link, ...styles.parentLink }}
+        href="/login/parent"
+      >
         Panel Rodzica
       </Link>
-      <Link style={styles.link} href="/login/teacher">
+      <Link
+        style={{ ...styles.link, ...styles.teacherLink }}
+        href="/login/teacher"
+      >
         Panel Nauczyciela
       </Link>
     </View>
@@ -31,5 +43,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#FFFFFF",
     textDecorationLine: "none",
+  },
+  parentLink: {
+    backgroundColor: "#28A745",
+  },
+  teacherLink: {
+    backgroundColor: "#007BFF",
   },
 });

@@ -33,8 +33,7 @@ export default function HomeScreen() {
   return (
     <ScrollView>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+
         {permissions.map((perm) => (
           <Link style={styles.link} href={{ pathname: '/(parent)/pickup/[id]', params: { id: perm.id }, }} key={perm.id}>
             {`${perm.parent}\n${perm.state}\n${perm.start_date}\n${perm.end_date}`}
@@ -48,6 +47,7 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   titleContainer: {
+    paddingTop: 25,
     flexDirection: 'column',
     alignItems: 'center',
     gap: 8,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     padding: 20,
     margin: 20,
     width: 300,
-    backgroundColor: "#007BFF",
+    backgroundColor: "#28A745",
     borderRadius: 10,
     textAlign: "center",
     color: "#FFFFFF",

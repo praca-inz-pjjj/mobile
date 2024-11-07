@@ -14,23 +14,38 @@ export default function TabTwoScreen() {
   useEffect(() => {
     async function doRequest() {
       try {
-        const response = await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/parent/generate/${id}`, { id });
-        setQRCode(response.data.qr_code)
+        const response = await axios.post(
+          `${process.env.EXPO_PUBLIC_API_URL}/parent/generate/${id}`,
+          { id }
+        );
+        setQRCode(response.data.qr_code);
         return response.data;
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
-    doRequest()
-
-  }, [])
+    doRequest();
+  }, []);
 
   return (
     <ThemedView style={styles.container}>
-          {qrCode && 
-    <><ThemedText style={styles.headerText}>{`Odbierz dziecko`}</ThemedText><ThemedText style={styles.qrCodeText}>{qrCode}</ThemedText><QRCode value={String(qrCode)} size={300} color="black" backgroundColor="#F8F9FA" /></>
-    }
-    {!qrCode && <ThemedText style={styles.headerText}>{"Nie ma takiej permisji"}</ThemedText>}
+      {qrCode && (
+        <View>
+          <ThemedText style={styles.headerText}>{`Odbierz dziecko`}</ThemedText>
+          <ThemedText style={styles.qrCodeText}>{qrCode}</ThemedText>
+          <QRCode
+            value={String(qrCode)}
+            size={300}
+            color="black"
+            backgroundColor="#F8F9FA"
+          />
+        </View>
+      )}
+      {!qrCode && (
+        <ThemedText style={styles.headerText}>
+          {"Nie ma takiej zgody"}
+        </ThemedText>
+      )}
     </ThemedView>
   );
 }
@@ -39,20 +54,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#F8F9FA',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#F8F9FA",
+    justifyContent: "center",
+    alignItems: "center",
   },
   headerText: {
     fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginBottom: 10,
   },
   qrCodeText: {
     fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginBottom: 15,
   },
   headerImage: {
@@ -60,5 +75,5 @@ const styles = StyleSheet.create({
     bottom: -90,
     left: -35,
     position: "absolute",
-  }
+  },
 });
