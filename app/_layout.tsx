@@ -49,21 +49,28 @@ function Layout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
+      <Stack
+        screenOptions={{
+          headerTitleAlign: "center",
+        }}
+      >
         <Stack.Screen
           name="(parent)"
           options={{
-            headerRight: () => <Button onPress={onLogout} title="Wyloguj" />,
+            title: "Panel Rodzica",
+            headerRight: () => <Button onPress={onLogout} title="Wyloguj" color="#28A745" />,
           }}
         />
         <Stack.Screen
           name="(teacher)"
           options={{
+            title: "Panel Nauczyciela",
             headerRight: () => (
               <Button onPress={onTeacherLogout} title="Wyloguj" />
             ),
           }}
         />
+        <Stack.Screen name="login/index" options={{ title: "XD" }} />
         <Stack.Screen name="+not-found" />
       </Stack>
     </ThemeProvider>
