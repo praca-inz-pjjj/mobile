@@ -75,7 +75,7 @@ export default function Scanned(){
 
     return (
       <View style={styles.container}>
-      {data && 
+      {data && parent?.id !== reciver?.id &&
       <><View style={styles.titleContainer}>
             <ThemedText style={styles.headerText}>Permisja Aktywna dla kodu {permission?.qr_code}</ThemedText>
           </View><View style={styles.personContainer}>
@@ -86,6 +86,22 @@ export default function Scanned(){
               <Text style={styles.personRoleText}>Odbierający</Text>
               <Text style={styles.personText}>Imię: {reciver?.first_name}</Text>
               <Text style={styles.personText}>Nazwisko: {reciver?.last_name}</Text>
+            </View><View style={styles.personContainer}>
+              <Text style={styles.personRoleText}>Dziecko do odbioru</Text>
+              <Text style={styles.personText}>Imię: {child?.first_name}</Text>
+              <Text style={styles.personText}>Nazwisko: {child?.last_name}</Text>
+            </View><View style={styles.buttonContainer}>
+              <Button title="Zatwierdź Odbiór" color="#28A745" onPress={handleAccept}/>
+              <Button title="Odrzuć Odbiór" color="#DC3545" onPress={handleReject}/>
+            </View></>
+    }
+    {data && parent?.id === reciver?.id &&
+      <><View style={styles.titleContainer}>
+            <ThemedText style={styles.headerText}>Permisja Aktywna dla kodu {permission?.qr_code}</ThemedText>
+          </View><View style={styles.personContainer}>
+              <Text style={styles.personRoleText}>Rodzic/Odbierający</Text>
+              <Text style={styles.personText}>Imię: {parent?.first_name}</Text>
+              <Text style={styles.personText}>Nazwisko: {parent?.last_name}</Text>
             </View><View style={styles.personContainer}>
               <Text style={styles.personRoleText}>Dziecko do odbioru</Text>
               <Text style={styles.personText}>Imię: {child?.first_name}</Text>
