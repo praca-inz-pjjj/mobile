@@ -12,6 +12,7 @@ interface Permission {
   state: string;
   start_date: string;
   end_date: string;
+  child: string;
 }
 
 export default function HomeScreen() {
@@ -36,7 +37,7 @@ export default function HomeScreen() {
 
         {permissions.map((perm) => (
           <Link style={styles.link} href={{ pathname: '/(parent)/pickup/[id]', params: { id: perm.id }, }} key={perm.id}>
-            {`${perm.parent}\n${perm.state}\n${perm.start_date}\n${perm.end_date}`}
+            {`Dziecko: ${perm.child}\nRodzic: ${perm.parent}\n${perm.start_date}\n${perm.end_date}`}
           </Link>
         ))}
       </ThemedView>
