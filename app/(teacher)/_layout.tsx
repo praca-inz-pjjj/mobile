@@ -45,6 +45,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="scan/checktwofactor"
+        options={{
+          unmountOnBlur: true,
+          tabBarButton: () => null
+        }}
+      />
+      <Tabs.Screen
         name="scan/scanned"
         options={{
           unmountOnBlur: true,
