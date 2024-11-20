@@ -32,13 +32,13 @@ export default function ScannerQR() {
     type: string;
     data: string;
   }) => {
-    router.push({ pathname: "/(teacher)/scan/scanned", params: { id: data } });
+    router.push({ pathname: "/(teacher)/scan/checktwofactor", params: { id: data } });
   };
 
   const handleManualCodeSubmit = () => {
     if (manualCode.trim()) {
       router.push({
-        pathname: "/(teacher)/scan/scanned",
+        pathname: "/(teacher)/scan/checktwofactor",
         params: { id: manualCode },
       });
     }
