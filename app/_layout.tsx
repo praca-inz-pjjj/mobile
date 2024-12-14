@@ -11,7 +11,7 @@ import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import AuthContext, { useParentAuth } from "./context/ParentAuthContext";
-import { Button } from "react-native";
+import { Button, TouchableOpacity, Text, StyleSheet } from "react-native";
 import TeacherAuthContext, {
   useTeacherAuth,
 } from "./context/TeacherAuthContext";
@@ -57,16 +57,27 @@ function Layout() {
         <Stack.Screen
           name="(parent)"
           options={{
+            headerBackVisible: false,
             title: "Panel Rodzica",
-            headerRight: () => <Button onPress={onLogout} title="Wyloguj" color="#28A745" />,
+            headerRight: () => (
+              <TouchableOpacity onPress={onLogout} style={styles.button}>
+                <Text style={styles.buttonText}>Wyloguj</Text>
+              </TouchableOpacity>
+            ),
           }}
         />
         <Stack.Screen
           name="(teacher)"
           options={{
+            headerBackVisible: false,
             title: "Panel Nauczyciela",
             headerRight: () => (
-              <Button onPress={onTeacherLogout} title="Wyloguj" />
+              <TouchableOpacity
+                onPress={onTeacherLogout}
+                style={styles.teacherButton}
+              >
+                <Text style={styles.buttonText}>Wyloguj</Text>
+              </TouchableOpacity>
             ),
           }}
         />
@@ -76,3 +87,19 @@ function Layout() {
     </ThemeProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: "#28A745",
+    padding: 10,
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: "#fff",
+  },
+  teacherButton: {
+    backgroundColor: "#007BFF",
+    padding: 10,
+    borderRadius: 10,
+  },
+});
