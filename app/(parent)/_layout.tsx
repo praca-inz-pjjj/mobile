@@ -1,10 +1,12 @@
 import { Redirect, Tabs } from "expo-router";
 import React from "react";
+import Fontisto from '@expo/vector-icons/Fontisto';
 
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useParentAuth } from "../context/ParentAuthContext";
+
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -22,7 +24,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: "Start",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "home" : "home-outline"}
@@ -32,11 +34,20 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="history"
+        options={{
+          title: "Historia Odbiorów",
+          tabBarIcon: ({ color, focused }) => (
+            <Fontisto name="history" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="pickup/[id]"
         options={{
           title: "Pick up",
           unmountOnBlur: true,
-          tabBarButton: () => null
+          tabBarButton: () => null,
         }}
       />
     </Tabs>

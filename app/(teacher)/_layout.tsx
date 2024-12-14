@@ -1,5 +1,6 @@
 import { Redirect, Tabs } from "expo-router";
 import React from "react";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
@@ -37,10 +38,7 @@ export default function TabLayout() {
           unmountOnBlur: true,
           title: "scan",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
-            />
+            <AntDesign name="scan1" size={24} color={color} />
           ),
         }}
       />
@@ -48,14 +46,14 @@ export default function TabLayout() {
         name="scan/checktwofactor"
         options={{
           unmountOnBlur: true,
-          tabBarButton: () => null
+          tabBarButton: () => null,
         }}
       />
       <Tabs.Screen
         name="scan/scanned"
         options={{
           unmountOnBlur: true,
-          tabBarButton: () => null
+          tabBarButton: () => null,
         }}
       />
     </Tabs>
