@@ -102,7 +102,6 @@ export default function ReceiveById() {
   };
 
   const handleSubmit = async () => {
-    console.log('fajnie')
     if (selectedUserId && selectedChildId && selectedPermission && selectedPermission.id) {
       try {
         await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/teacher/receipt`, { permission_id: selectedPermission.id, reciver_id: selectedUserId, acceptance: true })

@@ -5,6 +5,7 @@ import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useTeacherAuth } from "../context/TeacherAuthContext";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -48,12 +49,9 @@ export default function TabLayout() {
         name="scan/receiveById"
         options={{
           unmountOnBlur: true,
-          title: "find",
+          title: "znajdź",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
-            />
+            <AntDesign name="search1" size={24} color={color} />
           ),
         }}
       />
