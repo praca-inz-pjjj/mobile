@@ -45,6 +45,19 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="scan/receiveById"
+        options={{
+          unmountOnBlur: true,
+          title: "find",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "code-slash" : "code-slash-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="scan/checktwofactor"
         options={{
           unmountOnBlur: true,
