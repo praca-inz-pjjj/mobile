@@ -105,7 +105,6 @@ export default function ReceiveById() {
     console.log('fajnie')
     if (selectedUserId && selectedChildId && selectedPermission && selectedPermission.id) {
       try {
-        console.log(selectedPermission.id, selectedUserId)
         await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/teacher/receipt`, { permission_id: selectedPermission.id, reciver_id: selectedUserId, acceptance: true })
         alert(`Udało się zapisać zmiany`)
       }
