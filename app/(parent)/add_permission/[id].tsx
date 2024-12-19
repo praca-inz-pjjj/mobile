@@ -41,7 +41,7 @@ const AddPermission: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [permittedUsers, setPermittedUsers] = useState<Receiver[]>([]);
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [permittedUser, setPermittedUser] = useState();
 
   const [fromDate, setFromDate] = useState<Date | null>(null);
   const [fromPickerVisible, setFromPickerVisible] = useState(false);
@@ -52,7 +52,7 @@ const AddPermission: React.FC = () => {
 
   const submit = async () => {
     const values = {
-      permitted_user: selectedLanguage,
+      permitted_user: permittedUser,
       start_date: fromDate,
       end_date: toDate,
       two_factor_verification: false,
@@ -110,9 +110,9 @@ const AddPermission: React.FC = () => {
                 <Text style={styles.label}>Odbierający</Text>
                 <Picker
                   style={styles.input}
-                  selectedValue={selectedLanguage}
+                  selectedValue={permittedUser}
                   onValueChange={(itemValue, itemIndex) =>
-                    setSelectedLanguage(itemValue)
+                    setPermittedUser(itemValue)
                   }
                 >
                   <Picker.Item
