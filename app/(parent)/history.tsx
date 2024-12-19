@@ -36,7 +36,6 @@ const History: React.FC = () => {
         );
         if (response?.data) {
           const { data } = response;
-          console.log(response);
           setItems(data.history);
 
           setPage(0);

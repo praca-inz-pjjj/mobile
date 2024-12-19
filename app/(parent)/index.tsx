@@ -8,10 +8,11 @@ import {
 import { ThemedView } from "@/components/ThemedView";
 
 import { useRouter } from "expo-router";
+import { useParentAuth } from "../context/ParentAuthContext";
 
 export default function HomeScreen() {
   const router = useRouter();
-
+  const { authState } = useParentAuth();
 
   return (
     <ScrollView contentContainerStyle={styles.titleContainer}>
@@ -25,14 +26,16 @@ export default function HomeScreen() {
           >
             <Text style={styles.submitText}>Twoje zgody</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.submit}
-            onPress={() => {
-              router.navigate(`/(parent)/permissions`);
-            }}
-          >
-            <Text style={styles.submitText}>Wydaj zgodę</Text>
-          </TouchableOpacity>
+          {authState?.type === "parent" && (
+            <TouchableOpacity
+              style={styles.submit}
+              onPress={() => {
+                router.navigate(`/(parent)/permissions`);
+              }}
+            >
+              <Text style={styles.submitText}>Wydaj zgodę</Text>
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             style={styles.submit}
             onPress={() => {

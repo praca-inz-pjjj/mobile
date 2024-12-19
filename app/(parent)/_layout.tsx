@@ -11,6 +11,7 @@ import { useParentAuth } from "../context/ParentAuthContext";
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const { authState } = useParentAuth();
+
   if (!authState?.authenticated) {
     return <Redirect href="/login" />;
   }
@@ -42,15 +43,30 @@ export default function TabLayout() {
           ),
         }}
       />
+
       <Tabs.Screen
         name="permissions"
         options={{
           title: "Wydaj zgodę",
           tabBarIcon: ({ color }) => (
-            <Ionicons name="add-circle-outline" size={24} color={color} />
+            <Ionicons
+              name="add-circle-outline"
+              size={24}
+              color={color}
+              style={{ opacity: authState?.type === "parent" ? 1 : 0.5 }}
+            />
           ),
+          
+        }}
+        listeners={{
+          tabPress: (e) => {
+            if (authState?.type !== "parent") {
+              e.preventDefault();
+            }
+          },
         }}
       />
+
       <Tabs.Screen
         name="add_permission/[id]"
         options={{

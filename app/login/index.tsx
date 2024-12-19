@@ -15,13 +15,13 @@ export default function HomeScreen() {
         style={{ ...styles.link, ...styles.parentLink }}
         href="/login/parent"
       >
-        Panel Rodzica
+        Panel Odbierającego
       </Link>
       <Link
         style={{ ...styles.link, ...styles.teacherLink }}
         href="/login/teacher"
       >
-        Panel Nauczyciela
+        Panel Wydającego
       </Link>
     </View>
   );
