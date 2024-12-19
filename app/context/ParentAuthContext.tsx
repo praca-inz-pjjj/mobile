@@ -2,8 +2,14 @@ import * as SecureStore from "expo-secure-store";
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 
+interface AuthState {
+  token: string | null;
+  authenticated: boolean | null;
+  type: "parent" | "receiver" | null;
+}
+
 interface AuthProps {
-  authState?: { token: string | null; authenticated: boolean | null };
+  authState?: AuthState;
   onRegister?: (email: string, password: string) => Promise<any>;
   onLogin?: (email: string, password: string) => Promise<any>;
   onLogout?: () => Promise<any>;
@@ -19,10 +25,7 @@ export const useParentAuth = () => {
 };
 
 export default function AuthProvider({ children }: any) {
-  const [authState, setAuthState] = useState<{
-    token: string | null;
-    authenticated: boolean | null;
-  }>({ token: null, authenticated: null });
+  const [authState, setAuthState] = useState<AuthState>({ token: null, authenticated: null, type: null });
 
   useEffect(() => {
     // left for now
@@ -70,7 +73,11 @@ export default function AuthProvider({ children }: any) {
       }
       await SecureStore.setItemAsync(TOKEN_KEY, response.data.access);
       await SecureStore.setItemAsync(REFRESH_TOKEN_KEY, response.data.refresh);
-      setAuthState({ token: response.data.access, authenticated: true });
+      setAuthState({
+        token: response.data.access,
+        authenticated: true,
+        type: response.data.type === 1 ? "receiver" : "parent",
+      });
       axios.defaults.headers.common[
         "Authorization"
       ] = `Bearer ${response.data.access}`;
@@ -83,7 +90,7 @@ export default function AuthProvider({ children }: any) {
 
   const logout = async () => {
     await SecureStore.deleteItemAsync(TOKEN_KEY);
-    setAuthState({ token: null, authenticated: false });
+    setAuthState({ token: null, authenticated: false, type: null });
     axios.defaults.headers.common["Authorization"] = "";
   };
 

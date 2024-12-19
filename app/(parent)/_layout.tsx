@@ -1,16 +1,17 @@
 import { Redirect, Tabs } from "expo-router";
 import React from "react";
-import Fontisto from '@expo/vector-icons/Fontisto';
-
+import Fontisto from "@expo/vector-icons/Fontisto";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useParentAuth } from "../context/ParentAuthContext";
 
-
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const { authState } = useParentAuth();
+
   if (!authState?.authenticated) {
     return <Redirect href="/login" />;
   }
@@ -34,10 +35,51 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="your_permissions"
+        options={{
+          title: "Twoje zgody",
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="checkcircleo" size={24} color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="permissions"
+        options={{
+          title: "Wydaj zgodę",
+          tabBarIcon: ({ color }) => (
+            <Ionicons
+              name="add-circle-outline"
+              size={24}
+              color={color}
+              style={{ opacity: authState?.type === "parent" ? 1 : 0.5 }}
+            />
+          ),
+          
+        }}
+        listeners={{
+          tabPress: (e) => {
+            if (authState?.type !== "parent") {
+              e.preventDefault();
+            }
+          },
+        }}
+      />
+
+      <Tabs.Screen
+        name="add_permission/[id]"
+        options={{
+          title: "Wydaj zgodę",
+          unmountOnBlur: true,
+          tabBarButton: () => null,
+        }}
+      />
+      <Tabs.Screen
         name="history"
         options={{
           title: "Historia Odbiorów",
-          tabBarIcon: ({ color, focused }) => (
+          tabBarIcon: ({ color }) => (
             <Fontisto name="history" size={24} color={color} />
           ),
         }}

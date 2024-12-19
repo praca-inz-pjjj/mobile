@@ -38,7 +38,7 @@ export default function TabLayout() {
         options={{
           unmountOnBlur: true,
           title: "scan",
-          tabBarIcon: ({ color, focused }) => (
+          tabBarIcon: ({ color }) => (
             <AntDesign name="scan1" size={24} color={color} />
           ),
         }}

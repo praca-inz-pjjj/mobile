@@ -58,7 +58,7 @@ function Layout() {
           name="(parent)"
           options={{
             headerBackVisible: false,
-            title: "Panel Rodzica",
+            title: "Panel Odbierającego",
             headerRight: () => (
               <TouchableOpacity onPress={onLogout} style={styles.button}>
                 <Text style={styles.buttonText}>Wyloguj</Text>
@@ -70,7 +70,7 @@ function Layout() {
           name="(teacher)"
           options={{
             headerBackVisible: false,
-            title: "Panel Nauczyciela",
+            title: "Panel Wydającego",
             headerRight: () => (
               <TouchableOpacity
                 onPress={onTeacherLogout}
