@@ -201,7 +201,6 @@ const styles = StyleSheet.create({
   },
   header: {
     margin: 20,
-    // fontSize: 36,
   },
   headerText: {
     fontSize: 36,
@@ -233,7 +232,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F0F0F0",
     marginTop: 20,
     padding: 10,
-    // borderRadius: 10,
     fontSize: 20,
   },
   option: {
