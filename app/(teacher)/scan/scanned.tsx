@@ -29,7 +29,7 @@ interface Child{
 }
 
 export default function Scanned(){
-    const { id } = useLocalSearchParams();
+    const { id, byId } = useLocalSearchParams();
     const [data, setData] = useState(null);
     const [parent, setParent] = useState<Person>();
     const [reciver, setReciver] = useState<Person>();
@@ -39,7 +39,7 @@ export default function Scanned(){
     useEffect(() => {
         async function doRequest() {
           try {
-            const response = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/teacher/receipt`, { params: { id: id }});
+            const response = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/teacher/receipt`, { params: { id: id, byId: byId ? byId : '0'} });
             setData(response.data)
             setParent(response.data.parent)
             setReciver(response.data.reciver)
@@ -51,7 +51,7 @@ export default function Scanned(){
         }
         doRequest()
     
-      }, [id]);
+      }, [id, byId]);
 
     const handleAccept = async () => {
       try{
