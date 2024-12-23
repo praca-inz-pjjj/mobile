@@ -181,7 +181,7 @@ export default function ReceiveById() {
       )}
 
       <Pressable style={styles.submit} onPress={handleSubmit}>
-        <Text style={styles.submitText}>Zatwierdź odbiór</Text>
+        <Text style={styles.submitText}>Przejdź dalej</Text>
       </Pressable>
     </View>
   );
