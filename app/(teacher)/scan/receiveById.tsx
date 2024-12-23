@@ -104,15 +104,14 @@ export default function ReceiveById() {
   const handleSubmit = async () => {
     if (selectedUserId && selectedChildId && selectedPermission && selectedPermission.id) {
       try {
-        await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/teacher/receipt`, { permission_id: selectedPermission.id, reciver_id: selectedUserId, acceptance: true })
-        alert(`Udało się zapisać zmiany`)
+        router.push({
+          pathname: "/(teacher)/scan/scanned",
+          params: { id: selectedPermission.id, byId: '1' },
+      });
       }
       catch (e) {
         alert(`Nie udało się zapisać zmian: ${e}`)
       }
-      finally{
-        router.back();
-      };
     } else {
       alert("Wybierz użytkownika i dziecko.");
     }
@@ -182,7 +181,7 @@ export default function ReceiveById() {
       )}
 
       <Pressable style={styles.submit} onPress={handleSubmit}>
-        <Text style={styles.submitText}>Zatwierdź odbiór</Text>
+        <Text style={styles.submitText}>Przejdź dalej</Text>
       </Pressable>
     </View>
   );
